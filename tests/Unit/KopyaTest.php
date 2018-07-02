@@ -18,4 +18,17 @@ class KopyaTest extends TestCase
 
         $reponse->assertStatus(302);
     }
+
+    /** @test */
+    public function user_can_create_new_kopyas()
+    {
+        $user = factory(\App\User::class)->create();
+        $kopya = factory(\App\Kopya::class)->create(['user_id' => $user->id]);
+
+        $response = $this->actingAs($user)
+                         ->post('/kopyas', $kopya->toArray());
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('kopyas', $kopya->toArray());
+    }
 }
