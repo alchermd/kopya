@@ -14,9 +14,9 @@ class KopyaTest extends TestCase
     /** @test */
     public function guest_cant_create_new_kopyas()
     {
-        $reponse = $this->post('/kopyas', ['title' => 'New Kopya']);
+        $reponse = $this->json('POST', '/kopyas', ['title' => 'New Kopya']);
 
-        $reponse->assertStatus(302);
+        $reponse->assertStatus(401);
     }
 
     /** @test */
@@ -26,7 +26,7 @@ class KopyaTest extends TestCase
         $kopya = factory(\App\Kopya::class)->create(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)
-                         ->post('/kopyas', $kopya->toArray());
+                         ->json('POST', '/kopyas', $kopya->toArray());
 
         $response->assertStatus(200);
         $this->assertDatabaseHas('kopyas', $kopya->toArray());
