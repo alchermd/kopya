@@ -14,7 +14,37 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Create a new <strong>Kopya</strong>
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        We support text, markdown, and images.
+                                    </p>
+                                    <a href="/kopyas/create" class="btn btn-primary">
+                                        <strong>&plus;</strong> Create
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <h5 class="card-header">
+                                    Browse all <strong>Kopyas</strong>
+                                </h5>
+                                <div class="card-body">
+                                    <p class="card-text">Search by subject, professor, or author.</p>
+                                    <a href="/kopyas" class="btn btn-primary">
+                                        <strong>&rarr;</strong> Browse
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
