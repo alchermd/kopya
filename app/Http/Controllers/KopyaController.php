@@ -32,7 +32,7 @@ class KopyaController extends Controller
      */
     public function create()
     {
-        //
+        return view('kopya.create');
     }
 
     /**
@@ -43,7 +43,16 @@ class KopyaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|unique:kopyas|min:3',
+            'body' => 'required|min:10',
+        ]);
+
+        $kopya = new Kopya($validatedData);
+        $kopya->user_id = $request->user()->id;
+        $kopya->save();
+
+        return redirect('/home');
     }
 
     /**
