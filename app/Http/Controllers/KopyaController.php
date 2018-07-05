@@ -22,7 +22,8 @@ class KopyaController extends Controller
      */
     public function index()
     {
-        //
+        $kopyas = Kopya::all();
+        return view('kopya.index', compact('kopyas'));
     }
 
     /**
