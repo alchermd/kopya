@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Relationship with kopyas.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\Relation
+     */
+    public function kopyas()
+    {
+        return $this->hasMany(Kopya::class);
+    }
 }

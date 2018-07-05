@@ -12,4 +12,14 @@ class Kopya extends Model
      * @var array
      */
     protected $fillable = ['title', 'body'];
+
+    /**
+     * Relationship to a User.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\Relation
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
