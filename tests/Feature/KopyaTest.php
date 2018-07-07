@@ -22,7 +22,7 @@ class KopyaTest extends TestCase
     /** @test */
     public function user_can_create_new_kopyas()
     {
-        $kopya = factory(\App\Kopya::class)->make(['user_id' => $user->id]);
+        $kopya = factory(\App\Kopya::class)->make(['user_id' => $this->user->id]);
 
         $response = $this->actingAs($this->user)
                          ->get('/kopyas/create');
@@ -49,5 +49,17 @@ class KopyaTest extends TestCase
         $kopyas->each(function ($kopya) use ($response) {
             $response->assertSee($kopya->title);
         });
+    }
+
+    /** @test */
+    public function user_can_browse_a_specific_kopya()
+    {
+        $kopya = factory(\App\Kopya::class)->create();
+
+        $response = $this->actingAs($this->user)
+                         ->get('/kopyas/' . $kopya->id);
+
+        $response->assertStatus(200);
+        $response->assertSee($kopya->title);
     }
 }
