@@ -64,7 +64,7 @@ class KopyaController extends Controller
      */
     public function show(Kopya $kopya)
     {
-        //
+        return view('kopya.show', compact('kopya'));
     }
 
     /**
