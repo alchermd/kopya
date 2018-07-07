@@ -62,4 +62,19 @@ class KopyaTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee($kopya->title);
     }
+
+    /** @test */
+    public function user_can_browse_all_of_their_kopyas_in_the_dashboard()
+    {
+        $kopyas = factory(\App\Kopya::class, 5)->create(['user_id' => $this->user->id]);
+
+        $response = $this->actingAs($this->user)
+                         ->get('/home');
+
+        $response->assertStatus(200);
+
+        $kopyas->each(function ($kopya) use ($response) {
+            $response->assertSee($kopya->title);
+        });
+    }
 }
