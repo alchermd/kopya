@@ -45,6 +45,38 @@
                             </div>
                         </div>
                     </div>
+
+                    <hr>
+
+                    <h2 class="text-center">My Kopyas</h2>
+
+                    <div class="row">
+                        @forelse ($kopyas as $kopya)
+                        <div class="col-md-6" style="margin-bottom: 20px;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="/users/{{ $kopya->user->id }}">{{ $kopya->user->name }}</a> |
+                                    {{ $kopya->created_at->diffForHumans() }}
+                                </div>
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: 800">
+                                        {{ $kopya->title }}
+                                    </h5>
+                                    <p class="card-text">{{ str_limit($kopya->body, 50) }}</p>
+                                    <a href="/kopyas/{{ $kopya->id }}" class="btn btn-primary">
+                                        Read Kopya
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        @empty
+                        <div class="col-lg-12">
+                            <h5 class="text-center text-muted">You haven't created one yet.</h5>
+                        </div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

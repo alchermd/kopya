@@ -21,8 +21,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $kopyas = \App\Kopya::where('user_id', $request->user()->id)
+                              ->get();
+
+        return view('home', compact('kopyas'));
     }
 }
