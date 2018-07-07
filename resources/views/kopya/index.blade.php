@@ -21,7 +21,8 @@
                         <div class="col-md-6" style="margin-bottom: 20px;">
                             <div class="card">
                                 <div class="card-header">
-                                    {{ $kopya->user->name }} | {{ $kopya->created_at->diffForHumans() }}
+                                    <a href="/users/{{ $kopya->user->id }}">{{ $kopya->user->name }}</a> |
+                                    {{ $kopya->created_at->diffForHumans() }}
                                 </div>
                                 
                                 <div class="card-body">
