@@ -77,4 +77,16 @@ class KopyaTest extends TestCase
             $response->assertSee($kopya->title);
         });
     }
+
+    /** @test */
+    public function user_that_dont_have_kopyas_yet_will_be_shown_a_message_in_the_dashboard()
+    {
+        $newUser = factory(\App\User::class)->create();
+
+        $response = $this->actingAs($newUser)
+                         ->get('/home');
+
+        $response->assertStatus(200);
+        $response->assertSee("You haven't created one yet.");
+    }
 }
