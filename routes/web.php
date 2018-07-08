@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/kopyas', 'KopyaController');
+
+Route::get('/users/{user}', 'ProfileController@show');
