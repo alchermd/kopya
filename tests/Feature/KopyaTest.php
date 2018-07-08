@@ -89,4 +89,19 @@ class KopyaTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee("You haven't created one yet.");
     }
+
+    /** @test */
+    public function user_can_view_another_users_profile()
+    {
+        $newUser = factory(\App\User::class)->create();
+        $kopyas = factory(\App\Kopya::class, 5)->create(['user_id' => $newUser->id]);
+
+        $response = $this->actingAs($this->user)
+                         ->get('/users/' . $newUser->id);
+
+        $response->assertStatus(200);
+        $kopyas->each(function ($kopya) use ($response) {
+            $response->assertSee($kopya->title);
+        });
+    }
 }
